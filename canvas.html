@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/canvas.css">
+</head>
+<body>
+    <canvas id="drawing" width="800" height="500"></canvas>
+
+    <script src="js/canvas.js"></script>
+    <script>
+        var drawing = document.getElementById('drawing');
+        var ctx = drawing.getContext('2d');
+
+        //变换原点
+        ctx.translate(400, 250);
+
+        for(var i = 1; i <= 12; i++){
+            if(i % 3 != 0){
+                drawScale(i * Math.PI / 6);
+            }
+        }
+
+        drawBasic();
+
+        //分针时针走动
+        var i = 0;
+        setInterval(function(){
+            i++;
+            //秒针走动
+            secondHandGo(i * 2 * Math.PI / 60);
+
+            //分针走动
+            minuteHandGo(i * 2 * Math.PI / (60 * 60));
+
+            //时针走动
+            hourHandGo(i * 2 * Math.PI / (60 * 60 * 60));
+
+        }, 1000)
+
+    </script>
+</body>
+</html>
